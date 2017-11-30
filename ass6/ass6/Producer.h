@@ -3,7 +3,7 @@
 //  ass6
 //
 //  Created by Admin on 2017-11-28.
-//  Author: Chen He 260743776
+//  Author : Chen He 260743776
 //
 
 #ifndef Producer_h

@@ -3,7 +3,7 @@
 //  ass6
 //
 //  Created by Admin on 2017-11-28.
-//  Copyright © 2017 Chen He. All rights reserved.
+//  Author : Chen He 260743776
 //
 
 #include "Producer.h"
