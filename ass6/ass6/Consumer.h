@@ -1,14 +1,13 @@
-//
-//  Consumer.h
-//  ass6
-//
-//  Created by Admin on 2017-11-29.
-//  Author : YuTong Yan 260716973
-//
 
 #ifndef Consumer_h
 #define Consumer_h
 
-#include <stdio.h>
+#include "Producer.h"
+
+/**
+ Consumer function that read data from DATAPATH defined in Producer.h and print on the screen.
+ */
+void consumer(void);
+
 
 #endif /* Consumer_h */

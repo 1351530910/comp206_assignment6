@@ -1,46 +1,45 @@
-//
-//  Producer.c
-//  ass6
-//
-//  Created by Admin on 2017-11-28.
-//  Author : Chen He 260743776
-//
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "Producer.h"
 
 void producer(void){
     
     //initialization
     FILE * src = fopen(FILEPATH, "rt");
-    FILE * turn = NULL;
+    FILE * turn=NULL;
+    char buffer;
     int c = 0;
     
     while (1) {
-        //wait consumer to delete the file
+        //wait consumer 
         do{
-            
-            fclose(turn);
-            turn = NULL;
-            turn = fopen(TURNFILE, "r");
+            turn = fopen(TURNFILE, "rt");
+           
             usleep(1000);
-        }while(turn);
+            buffer = fgetc(turn);
+        }while(buffer=='1');
+        fclose(turn);
         
         //read the next char
         c = fgetc(src);
         
         //end of file, exit program
         if (c==EOF) {
+            fclose(src);
             remove(DATAFILE);
+            remove(TURNFILE);
             return;
         }
-        
+
         //write a data file
         FILE* data = fopen(DATAFILE, "wt");
         fprintf(data, "%c",(char)c);
         fclose(data);
         
         //update status
-        FILE * t = fopen(TURNFILE, "wt");
-        fclose(t);
+        FILE * turn = fopen(TURNFILE, "w");
+        fputc('1',turn);
+        fclose(turn);
     }
 }
